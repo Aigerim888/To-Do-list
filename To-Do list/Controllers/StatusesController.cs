@@ -21,9 +21,9 @@ namespace To_Do_list.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Status status )
+        public IActionResult Create(Status status)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _formContext.Add(status);
                 _formContext.SaveChanges();
@@ -31,6 +31,17 @@ namespace To_Do_list.Controllers
             }
             return View(status);
         }
-        
+
+        [HttpPost]
+        public IActionResult Edit(Status status)
+        {
+            if (status.Name == null)
+            {
+                return NotFound();
+            }
+            return View(status);
+
+        }
+    
     }
 }

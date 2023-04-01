@@ -56,7 +56,26 @@ namespace To_Do_list.Controllers
             }
             return View(priority);
         }
-       
+        public IActionResult Delete(int id)
+        {
+            var prioritet = _formContext.Priorities.FirstOrDefault(s => s.Id == id);
+             if (prioritet == null)
+            {
+                return NotFound();
+            }
+            return View(prioritet);
+        }
+        [HttpPost]
+        public IActionResult Delete(Priority priority)
+        {
+            if (priority != null)
+            {
+                _formContext.Remove(priority);
+                _formContext.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
 
 
     }
