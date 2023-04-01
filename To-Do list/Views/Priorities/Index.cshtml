@@ -1,0 +1,32 @@
+﻿@model List<Priority>;
+
+@{
+    ViewData["Title"]="Список приоритетов";
+}
+<h2>Список приоритетов</h2>
+<p>
+    <a asp-action="Create" class="btn-btn-success">Создать новую</a>
+
+</p>
+<ul class="list-group">
+   @foreach(var item in this.Model)
+    {
+       @if(item.Id ==0)
+        {
+            <li class="list-group-item">
+                <a asp-action="Details" asp-route-id="@item.Id">@item.Name</a>
+                <a asp-action="Edit" asp-route-id = "@item.Id" class="btn-btn-primary">Редактировать</a>
+            </li>
+        }
+        @foreach(var itemInside in this.Model)
+        {
+            @if(item.Id==itemInside.Id)
+            {
+                <li class="list-group-item">
+                    <a asp-action="Details" asp-route-id="@itemInside.Id">@itemInside.Name</a>
+                    <a asp-action="Edit" asp-route-id="@itemInside.Id" class="btn-btn-primary">Редактировать</a>
+                </li>
+            }
+        }
+    }
+</ul>

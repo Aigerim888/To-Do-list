@@ -1,0 +1,14 @@
+﻿@model Issue
+@{
+    ViewData["Title"] = "Добавить задачу";
+
+}
+    <form asp-action="Create">
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Name</td>
+        <td>@Model.Priority</td>
+        <td>@Model.Status</td>
+    </tr>
+    </form>
+
